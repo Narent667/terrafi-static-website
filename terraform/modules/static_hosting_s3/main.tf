@@ -2,9 +2,18 @@
 resource "aws_s3_bucket" "static-bucket" {
 
   bucket = var.s3_hosting_details.bucket_name
-  acl    = "public-read"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = var.s3_hosting_details.tags
 
+}
+
+resource "aws_s3_bucket_acl" "static-bucket_acl" {
+  bucket = aws_s3_bucket.static-bucket.id
+  acl    = "public-read"
 }
 
 resource "null_resource" "remove_and_upload_to_s3" {
