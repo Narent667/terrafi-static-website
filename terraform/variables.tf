@@ -1,21 +1,22 @@
 variable state_bucket {
     type = string
-    default = "" //give your terraform statefile bucket
+    default = "nt-infra-dev-bucket55" //give your terraform statefile bucket
 }
 
 variable account_nr {
     type = string
-    default = "" //give your account number
+    default = "768682817835" //give your account number
 }
 
 variable "website_bucket" {
     type = string
-    default = ""
+    default = "nt-infra-static-website"
 }
 
 variable "website_bucket_tags" {
     type = any
     default = {
-        name = "sample website hosting"
+        name = "static website"
+        environment = "dev"
     }
 }
